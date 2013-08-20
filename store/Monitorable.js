@@ -46,7 +46,7 @@ define([
 				}
 			}
 
-			cache.put.call(cache, object, directives);
+			cache.put.call(cache, lang.clone(object), directives);
 			return originals.put.call(this, object, directives);
 		};
 

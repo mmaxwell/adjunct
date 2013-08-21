@@ -1,0 +1,39 @@
+.adjunctToggleSwitch input {
+	display: block;
+	opacity: 0;
+}
+
+.adjunctToggleSwitch label {
+	width: 65px;
+	height: 30px;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	background: #95a5a6;
+	border-radius: 30px;
+	
+	-webkit-transition: all .4s;
+	-moz-transition: all .4s;
+	-ms-transition: all .4s;
+	transition: all .4s;
+}
+
+.adjunctToggleSwitch label:after {
+	content: "";
+	position: absolute;
+	margin: 5px;
+	width: 20px;
+	height: 20px;
+	left: 0;	
+	background: #ffffff;
+	border-radius: 50%;
+}
+
+.adjunctToggleSwitch input:checked + label {
+	background: #27ae60;
+}
+
+.adjunctToggleSwitch input:checked + label:after {
+	left: auto;
+	right: 0;
+}

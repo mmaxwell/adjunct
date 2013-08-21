@@ -21,6 +21,31 @@ require([
 });
 </code></pre>
 
+## adjunct/widget/Toggleswitch
+
+<pre><code>
+&lt;style&gt;@import &quot;path/to/adjunct/resources/widget/ToggleSwitch.css&quot;;&lt;/style&gt;
+</code></pre>
+
+<pre><code>
+&lt;input type=&quot;checkbox&quot; id=&quot;toggleSwitch&quot; /&gt; Foo
+</code></pre>
+
+<pre><code>
+require([
+	"adjunct/widget/ToggleSwitch"
+], function (ToggleSwitch) {
+	var toggleSwitch = new ToggleSwitch({}, "toggleSwitch");
+
+	toggleSwitch.startup();
+
+	toggleSwitch.on("click'", function (event) {
+		console.log("Clicked!", event);
+	});
+});
+</code></pre>
+
+
 ## adjunct/widget/pausable
 
 <pre><code>

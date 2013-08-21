@@ -21,7 +21,7 @@ require([
 });
 </code></pre>
 
-## adjunct/widget/Toggleswitch
+## adjunct/widget/ToggleSwitch
 
 <pre><code>
 &lt;style&gt;@import &quot;path/to/adjunct/resources/widget/ToggleSwitch.css&quot;;&lt;/style&gt;

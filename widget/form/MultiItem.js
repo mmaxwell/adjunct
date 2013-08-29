@@ -139,12 +139,12 @@ define([
 		_getValueAttr: function () {
 			return this.items.query({});
 		},
-		_hideRemoveNodes: function () {
+		_hideRemoveNodes: function (add) {
 			// summary:
 			//		Hides all remove nodes.
 			var classMethod;
 
-			classMethod = domClass[readonly ? 'add' : 'remove'];
+			classMethod = domClass[add ? 'add' : 'remove'];
 
 			query('.remove', this.domNode).forEach(function (node) {
 				classMethod(node, 'dijitHidden');
@@ -160,7 +160,7 @@ define([
 				return;
 			}
 
-			this._hideRemoveNodes();
+			this._hideRemoveNodes(disabled);
 
 			this.perChild(function (item) {
 				item.set("disabled", disabled);
@@ -176,7 +176,7 @@ define([
 				return;
 			}
 
-			this._hideRemoveNodes();
+			this._hideRemoveNodes(readonly);
 
 			this.perChild(function (item) {
 				item.set("readonly", readonly);

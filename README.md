@@ -65,6 +65,22 @@ require([
 		templateString: "<div><input type='text' data-dojo-attach-point='inputNode' /></div>",
 		_setValueAttr: function (value) {
 			this.inputNode.value = value.value;
+		},
+		_setDisabledAttr: function (disabled) {
+			if (this.disabled === disabled) {
+				return;
+			}
+
+			this.inputNode[disabled ? "setAttribute" : "removeAttribute"]("disabled", disabled);
+			this._set("disabled", disabled);
+		},
+		_setReadonlyAttr: function (readonly) {
+			if (this.readonly === readonly) {
+				return;
+			}
+
+			this.inputNode[readonly ? "setAttribute" : "removeAttribute"]("readonly", readonly);
+			this._set("readonly", readonly);
 		}
 	});
 

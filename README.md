@@ -1,3 +1,10 @@
+# Dependencies
+
+* Dojo
+* Dijit
+* dgrid
+* xstyle
+
 # Examples
 
 ## adjunct/store/Monitorable
@@ -24,10 +31,6 @@ require([
 ## adjunct/widget/ToggleSwitch
 
 <pre><code>
-&lt;style&gt;@import &quot;path/to/adjunct/resources/widget/ToggleSwitch.css&quot;;&lt;/style&gt;
-</code></pre>
-
-<pre><code>
 &lt;input type=&quot;checkbox&quot; id=&quot;toggleSwitch&quot; /&gt; Foo
 </code></pre>
 
@@ -46,10 +49,6 @@ require([
 </code></pre>
 
 ## adjunct/widget/form/MultiItem
-
-<pre><code>
-&lt;style&gt;@import &quot;path/to/adjunct/resources/widget/MultiItem.css&quot;;&lt;/style&gt;
-</code></pre>
 
 <pre><code>
 &lt;div id=&quot;items&quot;&gt;&lt;/div&gt;

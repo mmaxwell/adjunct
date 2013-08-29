@@ -8,7 +8,8 @@ define([
 	"dojo/on",
 	"dijit/_WidgetBase",
 	"dijit/_TemplatedMixin",
-	"dojo/text!./templates/ToggleSwitch.html"
+	"dojo/text!./templates/ToggleSwitch.html",
+	"xstyle/css!adjunct/resources/widget/ToggleSwitch.css"
 ], function (declare, lang, on, _WidgetBase, _TemplatedMixin, template) {
 	return declare([_WidgetBase, _TemplatedMixin], {
 		// summary:

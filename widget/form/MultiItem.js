@@ -13,7 +13,8 @@ define([
 	"./_TemplatedMixin",
 	"./_IteratorMixin",
 	"../../util/typeCheck",
-	"dojo/text!./templates/MultiItem.html"
+	"dojo/text!./templates/MultiItem.html",
+	"xstyle/css!adjunct/resources/widget/MultiItem.css"
 ], function (require, declare, lang, domClass, on, query, Memory, _Container, registry, put, _TemplatedMixin, _IteratorMixin, typeCheck, template) {
 	return declare([_TemplatedMixin, _Container, _IteratorMixin], {
 		// summary:

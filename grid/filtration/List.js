@@ -3,9 +3,8 @@ define([
 	"dojo/on",
 	"dgrid/List",
 	"./_ListMixin",
-	"./_ArrayMixin",
-	"./util"
-], function (declare, on, List, _ListMixin, _ArrayMixin, util) {
+	"./_ArrayMixin"
+], function (declare, on, List, _ListMixin, _ArrayMixin) {
 	return declare([List, _ListMixin, _ArrayMixin], {
 		// summary:
 		//		List with the ability to be filtered.

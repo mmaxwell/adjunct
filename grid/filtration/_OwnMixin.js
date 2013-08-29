@@ -9,9 +9,14 @@ define([
 		//		Items that are owned by this object.
 		_owned: [],
 		own: function () {
+			// summary:
+			//		Creates a relationship where this object is the owner of provided items.
+			//		Items should have either destroyRecursive, destroy, or remove method.
 			this._owned = this._owned.concat(Array.prototype.slice.call(arguments, 0));
 		},
 		destroy: function () {
+			// summary:
+			//		Removes all owned items before this object is destroyed.
 			var owned = this._owned,
 				i = 0,
 				peon;
@@ -26,7 +31,7 @@ define([
 				}
 			}
 
-			this.inherited();
+			this.inherited(arguments);
 		}
 	});
 });

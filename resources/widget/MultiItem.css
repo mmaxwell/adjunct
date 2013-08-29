@@ -1,0 +1,24 @@
+.multi-item .icon.add {
+	cursor: pointer;
+	background: url(./images/add.png) no-repeat 0 0;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.multi-item .addMessage {
+	margin-top: -2px;
+}
+
+.multi-item .removeNode {
+	display: inline-block;
+}
+
+.multi-item .icon.remove {
+	cursor: pointer;
+	background: url(./images/remove.png) no-repeat 0 0;
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+}

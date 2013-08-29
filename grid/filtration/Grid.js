@@ -4,16 +4,16 @@ define([
 	"dgrid/Grid",
 	"./_ArrayMixin",
 	"./_GridMixin",
-	"./util"
-], function (declare, on, Grid, _ArrayMixin, _GridMixin, util) {
+	"../../util/typeCheck"
+], function (declare, on, Grid, _ArrayMixin, _GridMixin, typeCheck) {
 	return declare([Grid, _GridMixin, _ArrayMixin], {
 		// summary:
 		//		Grid with the ability to filter on a per column basis.
 		filter: function (/*Object?*/ fields) {
 			// summary:
 			//		Filters the grid based on values of all filters.
-			// fields: Object?
-			//		Optional object containing field and value. 
+			// fields: [optional] Object
+			//		Object containing field and value. 
 			//	|	grid.filter({col1: "value", col3: "other value"});
 			var filterers = this._filterers,
 				i = 0,
@@ -22,7 +22,7 @@ define([
 				properties = [],
 				filterer, item, z, scan, value;
 
-			if (util.isObject(fields)) {
+			if (typeCheck.isObject(fields)) {
 				for (field in fields) {
 					this._filtererMap[field].setValue(fields[field]);
 				}
@@ -55,7 +55,7 @@ define([
 				cancelable: true
 			});
 		},
-		reset: function (event) {
+		reset: function (/*Event*/ event) {
 			this._lastCollection = this._originalCollection;
 			this.filter(this._getActiveFilter(event.filterer).getValue());
 		}

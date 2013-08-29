@@ -45,6 +45,41 @@ require([
 });
 </code></pre>
 
+## adjunct/widget/form/MultiItem
+
+<pre><code>
+&lt;style&gt;@import &quot;path/to/adjunct/resources/widget/MultiItem.css&quot;;&lt;/style&gt;
+</code></pre>
+
+<pre><code>
+&lt;div id=&quot;items&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<pre><code>
+require([
+	"dojo/_base/declare",
+	"adjunct/widget/form/_TemplatedMixin",
+	"adjunct/widget/form/MultiItem"
+], function (declare, _TemplatedMixin, MultiItem) {
+	var TestItem = declare(_TemplatedMixin, {
+		templateString: "<div><input type='text' data-dojo-attach-point='inputNode' /></div>",
+		_setValueAttr: function (value) {
+			this.inputNode.value = value.value;
+		}
+	});
+
+	window.items = new MultiItem({
+		itemClass: TestItem,
+		addItemMessage: "Add New Test Item"
+	}, "items");
+
+	items.startup();
+
+	items.set("value", [{
+		value: "testing"
+	}]);
+});
+</code></pre>
 
 ## adjunct/widget/pausable
 

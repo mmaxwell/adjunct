@@ -4,9 +4,8 @@ define([
 	"dojo/store/util/SimpleQueryEngine",
 	"dijit/form/TextBox",
 	"dgrid/util/misc",
-	"./_FilterMixin",
-	"../util"
-], function (declare, lang, SimpleQueryEngine, TextBox, misc, _FilterMixin, util) {
+	"./_FilterMixin"
+], function (declare, lang, SimpleQueryEngine, TextBox, misc, _FilterMixin) {
 	function createRegExp(/*String*/ value, /*Boolean*/ caseSensitive) {
 		// summary:
 		//		Creates a regular expression to match a provided value.

@@ -29,8 +29,8 @@ define([
 			//		Puts an object into both cache store and wrapped store.
 			// object: Object
 			//		Object to put into the store.
-			// directives: Object
-			//		Optional directives for the stores' put calls.
+			// directives: [optional] Object
+			//		Directives for the stores' put calls.
 			var old = cache.get(cache.getIdentity(object)),
 				i, total, property, oldValue, newValue, listener;
 
@@ -55,8 +55,8 @@ define([
 			//		Creates an object, throws an error if the object already exists.
 			// object: Object
 			//		Object to put into the store.
-			// directives: Object
-			//		Optional directives for the store's put call.
+			// directives: [optional] Object
+			//		Directives for the store's put call.
 			(directives = directives || {}).overwrite = false;
 			return this.put(object, directives);
 		};
@@ -69,8 +69,8 @@ define([
 				//		Will store data retrieved in the cache.
 				// query: Object
 				//		Query to run against the store.
-				// options: Object
-				//		Optional options used by original store's query.
+				// options: [optional] Object
+				//		Options used by original store's query.
 				var results = originals.query.call(store, query, options);
 
 				results.forEach(function (object) {
@@ -85,7 +85,7 @@ define([
 				//		Gets an item from the store.
 				// id: String|Number
 				//		Id of the item to retrieve.
-				// directives: Object
+				// directives: [optional] Object
 				//		Directives for the original store's get call.
 				return when(originals.get.call(this, id, directives), function (result) {
 					if (result) {

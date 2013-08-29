@@ -4,6 +4,10 @@ define([
 	"./_OwnMixin"
 ], function (declare, _FiltrationMixin, _OwnMixin) {
 	return declare([_FiltrationMixin, _OwnMixin], {
+		// summary:
+		//		Abstract class for Lists.
+		// showHeader: Boolean
+		//		If the header should be shown.
 		showHeader: true,
 		buildRendering: function () {
 			var header = document.createElement("div"),

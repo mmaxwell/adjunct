@@ -62,7 +62,7 @@ require([
 	"adjunct/widget/form/MultiItem"
 ], function (declare, _TemplatedMixin, MultiItem) {
 	var TestItem = declare(_TemplatedMixin, {
-		templateString: "<div><input type='text' data-dojo-attach-point='inputNode' /></div>",
+		templateString: "&lt;div&gt;&lt;input type='text' data-dojo-attach-point='inputNode' /&gt;&lt;/div&gt;",
 		_setValueAttr: function (value) {
 			this.inputNode.value = value.value;
 		},

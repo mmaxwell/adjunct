@@ -1,7 +1,7 @@
 define([
 	"dojo/_base/declare",
 	"./_FiltrationMixin",
-	"./_OwnMixin"
+	"../../widget/_OwnMixin"
 ], function (declare, _FiltrationMixin, _OwnMixin) {
 	return declare([_FiltrationMixin, _OwnMixin], {
 		// summary:

@@ -1,7 +1,7 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"./_OwnMixin"
+	"../../widget/_OwnMixin"
 ], function (declare, lang, _OwnMixin) {
 	return declare(_OwnMixin, {
 		// summary:

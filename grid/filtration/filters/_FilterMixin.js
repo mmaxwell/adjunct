@@ -1,6 +1,6 @@
 define([
 	"dojo/_base/declare",
-	"../_OwnMixin",
+	"../../../widget/_OwnMixin",
 	"dojo/Evented"
 ], function (declare, _OwnMixin, Evented) {
 	return declare([_OwnMixin, Evented], {

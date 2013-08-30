@@ -61,7 +61,7 @@ define(function () {
 		};
 	}
 
-	if (!Object.hasOwnProperty("defineOwnProperties")) {
+	if (!Object.hasOwnProperty("defineProperties")) {
 		Object.defineOwnProperties = function (object, descriptors) {
 			Object.keys(descriptors).forEach(function (key) {
 				Object.defineProperty(object, key, descriptors[key]);

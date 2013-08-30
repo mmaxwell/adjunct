@@ -7,7 +7,10 @@ define([
 		//		where they should all be destroyed together.
 		// _owned: Object[]
 		//		Items that are owned by this object.
-		_owned: [],
+		_owned: null,
+		buildRendering: function () {
+			this._owned = [];
+		},
 		own: function () {
 			// summary:
 			//		Creates a relationship where this object is the owner of provided items.

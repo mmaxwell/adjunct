@@ -12,7 +12,7 @@ define(function () {
 
 			for (; i < total; i++) {
 				if (i in this) {
-					fn.call(context, this[i], this);
+					fn.call(context, this[i], i, this);
 				}
 			}
 		}

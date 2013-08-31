@@ -4,8 +4,9 @@ define([
 	"dgrid/Grid",
 	"./_ArrayMixin",
 	"./_GridMixin",
-	"../../util/typeCheck"
-], function (declare, on, Grid, _ArrayMixin, _GridMixin, typeCheck) {
+	"../../util/typeCheck",
+	"../../util/array"
+], function (declare, on, Grid, _ArrayMixin, _GridMixin, typeCheck, arrayUtil) {
 	return declare([Grid, _GridMixin, _ArrayMixin], {
 		// summary:
 		//		Grid with the ability to filter on a per column basis.
@@ -16,34 +17,32 @@ define([
 			//		Object containing field and value. 
 			//	|	grid.filter({col1: "value", col3: "other value"});
 			var filterers = this._filterers,
-				i = 0,
-				collection = this._lastCollection,
 				results = [],
-				properties = [],
-				filterer, item, z, scan, value;
+				result, value;
+
+			this._resetCollection();
 
 			if (typeCheck.isObject(fields)) {
-				for (field in fields) {
-					this._filtererMap[field].setValue(fields[field]);
-				}
-
-				return this.filter();
+				return this._setFiltererValues(fields);
 			}
 
-			while (item = collection[i++]) {
-				z = 0;
-				scan = true;
-				while (scan && (filterer = filterers[z++])) {
-					value = filterer.getValue();
-					if (value) {
-						scan = filterer.checkValue(item[filterer.field], value);
-					}
-				}
+			this._lastCollection.forEach(function (item) {
+				result = true;
 
-				if (scan) {
+				arrayUtil.forEach(filterers, function (filterer) {
+					var value = filterer.getStrictValue();
+
+					if (value) {
+						result = filterer.checkValue(item[filterer.field], value);
+					}
+
+					return result;
+				});
+
+				if (result) {
 					results.push(item);
 				}
-			}
+			});
 
 			this._filtering = true;
 			this.clear();
@@ -55,9 +54,9 @@ define([
 				cancelable: true
 			});
 		},
-		reset: function (/*Event*/ event) {
-			this._lastCollection = this._originalCollection;
-			this.filter(this._getActiveFilter(event.filterer).getValue());
+		reset: function () {
+			this._resetCollection();
+			this.filter();
 		}
 	});
 });

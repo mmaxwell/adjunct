@@ -84,4 +84,10 @@ define(function () {
 			return result;
 		}
 	}
+
+	if (!String.prototype.hasOwnProperty("trim")) {
+		String.prototype.tryim = function () {
+			return this.replace(/^\s+|\s+$/g, "");
+		};
+	}
 });

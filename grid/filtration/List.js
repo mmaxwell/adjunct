@@ -14,23 +14,19 @@ define([
 			// value: Object
 			//		Object containing value for which to filter.
 			//	|	list.filter("some value");
-			var collection = this._lastCollection,
-				filterProperties = this.filterProperties,
-				total = filterProperties.length,
-				i = 0,
+			var 	filterProperties = this.filterProperties,
 				results = [],
-				filterer = this.filterer,
-				item, z, property;
+				filterer = this.filterer;
 
-			while (item = collection[i++]) {
-				z = 0;
+			this._resetCollection();
 
-				while (property = filterProperties[z++]) {
+			this._lastCollection.forEach(function (item) {
+				filterProperties.forEach(function (property) {
 					if (filterer.checkValue(item[property], value)) {
 						results.push(item);
 					}
-				}
-			}
+				});
+			});
 
 			this._filtering = true;
 			this.clear();

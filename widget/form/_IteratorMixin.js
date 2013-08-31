@@ -1,5 +1,6 @@
 define([
-	"dojo/_base/declare"
+	"dojo/_base/declare",
+	"../../compat/es5polyfills"
 ], function (declare) {
 	return declare(null, {
 		// summary:
@@ -12,14 +13,10 @@ define([
 			// context: [optional] Object
 			//		Context in which to execute the function.  If context is not
 			//		provided, context is defaulted to the child.
-			var children = this.getChildren(),
-				i = 0,
-				child;
+			var children = this.getChildren();
 
 			if (children) {
-				while (child = children[i++]) {
-					fn.call(context || child, child, i, children);
-				}
+				children.forEach(fn, context);
 			}
 		}
 	});

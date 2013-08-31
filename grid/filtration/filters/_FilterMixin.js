@@ -28,6 +28,11 @@ define([
 			//		The value of the filter.
 			return null;
 		},
+		getStrictValue: function () {
+			// returns:
+			//		The value only if it matches specific criteria, otherwise null.
+			return null;
+		},
 		setValue: function(value) {
 			// summary:
 			//		Sets the value of the filter.

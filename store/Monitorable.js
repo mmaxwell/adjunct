@@ -1,7 +1,8 @@
 define([
 	"dojo/_base/lang",
 	"dojo/when",
-	"dojo/store/Memory"
+	"dojo/store/Memory",
+	"../compat/es5polyfills"
 ], function (lang, when, Memory) {
 	return function (/*dojo/store*/ store) {
 		// summary:
@@ -34,7 +35,7 @@ define([
 			var old = cache.get(cache.getIdentity(object)),
 				i, total, property, oldValue, newValue, listener;
 
-			for (property in listeners) {
+			Object.keys(listeners).forEach(function (property) {
 				listener = listeners[property];
 				if (listener) {
 					oldValue = old[property];
@@ -44,7 +45,7 @@ define([
 						listener.call(object, oldValue, newValue);
 					}
 				}
-			}
+			});
 
 			cache.put.call(cache, lang.clone(object), directives);
 			return originals.put.call(this, object, directives);

@@ -1,45 +1,52 @@
 define([
 	"dojo/_base/declare",
-	"./_FiltrationMixin"
-], function (declare, _FiltrationMixin) {
+	"./_FiltrationMixin",
+	"../../util/array"
+], function (declare, _FiltrationMixin, arrayUtil) {
 	return declare(_FiltrationMixin, {
 		// summary:
 		//		Abstract class containing common grid functionality.
 		// _filterers: filterer[]
-		_filterers: [],
+		_filterers: null,
 		// _filtererMap: Object
 		//		Map containing filterers where the field they are tied to is the key.
-		_filtererMap: {},
-		_getActiveFilter: function (/*filterer*/ not) {
-			// summary:
-			//		Returns a filterer that is not the provided filterer.
-			var filterers = this._filterers,
-				i = 0,
-				filterer;
-
-			while (filterer = filterers[i++]) {
-				if (filterer.field !== not.field) {
-					return filterer;
-				}
-			}
-		},
+		_filtererMap: null,
 		renderHeader: function () {
-			var columns, columnId, column;
+			var columns, filterers, filterMap;
 
 			this.inherited(arguments);
 
 			columns = this.columns;
 
-			for (columnId in columns) {
-				column = columns[columnId];
+			filterers = this._filterers;
+			filterMap = this._filterMap;
+
+			if (!filterers) {
+				this._filterers = filterers = [];
+				this._filtererMap = filtererMap = {};
+			}
+
+			Object.keys(columns).forEach(function (columnId) {
+				var column = columns[columnId];
 
 				this.own(column);
 				this._attachEventListeners(column);
-				this._filterers.push(column);
-				this._filtererMap[column.field] = column;
+				filterers.push(column);
+				filtererMap[column.field] = column;
 
 				column.headerNode.appendChild(column.domNode);
-			}
+			}, this);
+		},
+		_setFiltererValues: function (/*Object*/ fields) {
+			// summary:
+			//		Sets the values of all the filterers.
+			// fields: Object
+			//		Object containing filterer name and value.
+			Object.keys(fields).forEach(function (field) {
+				this._filtererMap[field].setValue(fields[field]);
+			}, this);
+
+			this.filter();
 		}
 	})
 });

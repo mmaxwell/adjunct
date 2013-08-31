@@ -1,5 +1,6 @@
 define([
-	"dojo/_base/declare"
+	"dojo/_base/declare",
+	"../compat/es5polyfills"
 ], function (declare) {
 	return declare(null, {
 		// summary:
@@ -8,13 +9,14 @@ define([
 		// _owned: Object[]
 		//		Items that are owned by this object.
 		_owned: null,
-		buildRendering: function () {
-			this._owned = [];
-		},
 		own: function () {
 			// summary:
 			//		Creates a relationship where this object is the owner of provided items.
 			//		Items should have either destroyRecursive, destroy, or remove method.
+			if (!this._owned) {
+				this._owned = [];
+			}
+
 			this._owned = this._owned.concat(Array.prototype.slice.call(arguments, 0));
 		},
 		destroy: function () {
@@ -24,7 +26,7 @@ define([
 				i = 0,
 				peon;
 
-			while (peon = owned[i++]) {
+			this._owned.forEach(function (peon) {
 				if (peon.destroyRecursive) {
 					peon.destroyRecursive();
 				} else if (peon.destroy) {
@@ -32,7 +34,7 @@ define([
 				} else if (peon.remove) {
 					peon.remove();
 				}
-			}
+			});
 
 			this.inherited(arguments);
 		}

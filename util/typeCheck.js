@@ -10,6 +10,9 @@ define(function () {
 		},
 		isObject: function (object) {
 			return toString.call(object) === "[object Object]";
+		},
+		isFunction: function (object) {
+			return toString.call(object) === "[object Function]";
 		}
 	};
 });

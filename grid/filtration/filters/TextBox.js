@@ -90,13 +90,11 @@ define([
 			//		Properties that will be checked.
 			// returns:
 			//		Array of query objects.
-			var i = 0,
-				queries = [],
-				property;
+			var	queries = [];
 
-			while (property = properties[i++]) {
+			properties.forEach(function (property) {
 				queries.push(this.buildQuery(value, property));
-			}
+			}, this);
 
 			return queries;
 		},
@@ -109,10 +107,12 @@ define([
 			//		Property to check value against.
 			// returns:
 			//		A query object.
-			var i = 0,
-				query = {};
+			var query = {},
+				trimmedValue = value.trim();
 
-			query[property] = this.canRegExp ? createRegExp(value, this.caseSensitive) : property;
+			if (trimmedValue) { 
+				query[property] = this.canRegExp ? createRegExp(trimmedValue, this.caseSensitive) : property;
+			}
 
 			return query;
 		},
@@ -120,6 +120,17 @@ define([
 			// returns:
 			//		The value of the filter.
 			return this.criteria.get("value");
+		},
+		getStrictValue: function () {
+			// returns:
+			//		The value only if its length is equal to or greater than minLength, otherwise null.
+			var value = this.getValue();
+
+			if (value.length >= this.minLength) {
+				return value;
+			}
+
+			return null;
 		},
 		setValue: function (/*String*/ value) {
 			// summary:

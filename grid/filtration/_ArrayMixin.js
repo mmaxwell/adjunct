@@ -20,6 +20,9 @@ define([
 			if (this._originalCollection) {
 				this.renderArray(this._originalCollection);
 			}
+		},
+		_resetCollection: function () {
+			this._lastCollection = this._originalCollection;
 		}
 	});
 });

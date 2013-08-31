@@ -18,24 +18,20 @@ define([
 			//		Object containing field and value. 
 			//	|	grid.filter({col1: "value", col3: "other value"});
 			var filterers = this._filterers,
-				i = 0,
 				query = {},
-				filterer, value, field;
+				field;
 
 			if (typeCheck.isObject(fields)) {
-				for (field in fields) {
-					this._filtererMap[field].setValue(fields[field]);
-				}
-
-				return this.filter();
+				return this._setFiltererValues(fields);
 			}
-			
-			while (filterer = filterers[i++]) {
-				value = filterer.getValue();
-				if (value !== "") {
+
+			filterers.forEach(function (filterer) {
+				var value = filterer.getStrictValue();
+
+				if (value) {
 					lang.mixin(query, filterer.buildQuery(value, filterer.field));
 				}
-			}
+			});
 
 			this.set("query", query);
 

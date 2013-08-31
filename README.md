@@ -36,7 +36,7 @@ require([
 
 <pre><code>
 require([
-	"adjunct/widget/ToggleSwitch"
+	"adjunct/widget/form/ToggleSwitch"
 ], function (ToggleSwitch) {
 	var toggleSwitch = new ToggleSwitch({}, "toggleSwitch");
 

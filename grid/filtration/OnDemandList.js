@@ -20,29 +20,26 @@ define([
 			//		Object containing value for which to filter.
 			//	|	list.filter("some value");
 			var queries = this.filterer.buildQueries(value, this.filterProperties),
-				i = 0,
 				dfd = new Deferred(),
-				list = this,
-				query;
-
-			function checkQuery(query) {
-				if (!dfd.isResolved()) {
-					when(list.store.query(query), function (results) {
-						if (results.length && !dfd.isResolved()) {
-							dfd.resolve(query);
-						}
-					});
-				}
-			}
+				checkQuery = lang.hitch(this, function (query) {
+					if (!dfd.isResolved()) {
+						when(this.store.query(query), function (results) {
+							if (results.length && !dfd.isResolved()) {
+								dfd.resolve(query);
+							}
+						});
+					}
+				});
 
 			this.clear();
 
-			while (query = queries[i++]) {
+			queries.forEach(function (query) {
 				checkQuery(query);
-			}
+			});
 
 			when(dfd, lang.hitch(this, function (query) {
 				this.set("query", query);
+
 				on.emit(this.domNode, "filtration-filter-complete", {
 					bubbles: true,
 					cancelable: true

@@ -1,7 +1,8 @@
 define([
 	"dojo/_base/declare",
+	"../util/array",
 	"../compat/es5polyfills"
-], function (declare) {
+], function (declare, arrayUtil) {
 	return declare(null, {
 		// summary:
 		//		Adds functionality for creating relationships between destroyable or removable objects and this object
@@ -17,7 +18,7 @@ define([
 				this._owned = [];
 			}
 
-			this._owned = this._owned.concat(Array.prototype.slice.call(arguments, 0));
+			this._owned = this._owned.concat(arrayUtil.create(arguments));
 		},
 		destroy: function () {
 			// summary:
@@ -33,8 +34,14 @@ define([
 					peon.destroy();
 				} else if (peon.remove) {
 					peon.remove();
+
+				// knockoutjs
+				} else if (peon.dispose) {
+					peon.dispose();
 				}
 			});
+
+			this._owned = [];
 
 			this.inherited(arguments);
 		}

@@ -13,6 +13,11 @@ define(function () {
 		},
 		isFunction: function (object) {
 			return toString.call(object) === "[object Function]";
+		},
+		typeOf: function (object) {
+			var type = toString.call(object);
+
+			return type.replace(/\[object\s|\]/g, "").toLowerCase();
 		}
 	};
 });

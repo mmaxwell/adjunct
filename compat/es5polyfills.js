@@ -5,7 +5,7 @@ define(function () {
 		};
 	}
 
-	if (!Array.hasOwnProperty("forEach")) {
+	if (!Array.prototype.hasOwnProperty("forEach")) {
 		Array.prototype.forEach = function (fn, context) {
 			var total = this.length,
 				i = 0;

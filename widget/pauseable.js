@@ -12,6 +12,8 @@ define([
 			//		DOM node, _WidgetBase, or Evented classes to add the listener to.
 			// listener: Function
 			//		Handler to execute when event is triggered.  Will executed in the context of node.
+			// returns
+			//		Listener signal.
 			var paused = false,
 				signal;
 

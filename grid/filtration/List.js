@@ -8,11 +8,11 @@ define([
 	return declare([List, _ListMixin, _ArrayMixin], {
 		// summary:
 		//		List with the ability to be filtered.
-		filter: function (/*Object*/ value) {
+		filter: function (/*any*/ value) {
 			// summary:
 			//		Filters the list based on values of its filter.
-			// value: Object
-			//		Object containing value for which to filter.
+			// value: any
+			//		Value for which to filter.
 			//	|	list.filter("some value");
 			var 	filterProperties = this.filterProperties,
 				results = [],

@@ -13,11 +13,11 @@ define([
 		reset: function () {
 			this.set("query", {});
 		},
-		filter: function (value) {
+		filter: function (/*any*/ value) {
 			// summary:
 			//		Filters the list based on values of its filter.
-			// value: Object
-			//		Object containing value for which to filter.
+			// value: any
+			//		Value for which to filter.
 			//	|	list.filter("some value");
 			var queries = this.filterer.buildQueries(value, this.filterProperties),
 				dfd = new Deferred(),

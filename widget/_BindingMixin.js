@@ -22,7 +22,6 @@ define([
 				//		Binds a node to the model.
 				// node: Node
 				//		Node to bind.
-
 				var binding = domAttr.get(node, "data-bind"),
 					key;
 
@@ -54,7 +53,6 @@ define([
 				//		Binds node and all child nodes.
 				// node: Node
 				//		Root node.
-
 				var children = node.childNodes ? arrayUtil.create(node.childNodes) : null;
 
 				bind(node);

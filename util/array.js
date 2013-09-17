@@ -18,7 +18,6 @@ define([
 			// limitter: [optional] Number
 			//		If positive, will be the index at which to terminate the loop.
 			//		If negative, the number will be subtracted from the limit at which the loop will terminate.
-
 			var i = index || 0,
 				limit = limitter < 0 ? array.length + limitter : limitter;
 
@@ -42,7 +41,6 @@ define([
 			// limitter: [optional] Number
 			//		If positive, will be the index at which to terminate the loop.
 			//		If negative, the number will be subtracted from the limit at which the loop will terminate.
-
 			var i = index || array.length,
 				limit = limitter < 0 ? 0 - limitter : limitter;
 
@@ -61,7 +59,6 @@ define([
 			//		Item that is not desired.
 			// returns
 			//		Object that is not the provided object or null.
-
 			var result = null,
 				matcher = function (object) {
 					return not === object;
@@ -92,7 +89,6 @@ define([
 			//		Item that is not desired.
 			// returns
 			//		Object that is not the provided object or null.
-
 			var result = null,
 				matcher = function (object) {
 					return not === object;
@@ -119,7 +115,6 @@ define([
 			//		Index at which to splice.
 			// returns
 			//		An array.
-
 			return Array.prototype.splice.call(object, index === undefined ? 0 : index);
 		}
 	};

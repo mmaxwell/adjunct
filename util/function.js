@@ -11,7 +11,6 @@ define([
 			//		Any extra parameters, are appended to the argument list.
 			//	|	var fn = fnUtil.partial(fn, 1, undefined, 2);
 			//	|	fn(4, 5); // fn(1,4,2, 5);
-
 			var	partial = this.partial,
 				args = arrayUtil.create(arguments, 1);
 

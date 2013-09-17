@@ -1,11 +1,14 @@
+Adjunct is a set of convenience modules and mixins most of which are intended for use with Dojo, Dijit, and dgrid.  More thorough documentation of module/mixin use is coming.
+
 # Dependencies
 
 * Dojo
 * Dijit
 * dgrid
 * xstyle
+* knockoutjs
 
-# Examples (More thorough documentation coming)
+# Examples
 
 ## adjunct/store/Monitorable
 
@@ -130,6 +133,55 @@ require([
 			state.innerHTML = "Paused";
 		}
 	});
+});
+</code></pre>
+
+## adjunct/widget/_OwnMixin
+
+<pre><code>
+require([
+	"dojo/_base/declare",
+	"dojo/on",
+	"adjunct/widget/_OwnMixin"
+], function (declare, on, _OwnMixin) {
+	var Widget = declare(_OwnMixin, {
+		on: function (type, listener) {
+			var handle = on(this.domNode, type, listener);
+			this.own(handle);
+			return handle;
+		}
+	});
+
+	var widget = new Widget();
+	widget.on("click", function(){...});
+});
+</code></pre>
+
+## adjunct/widget/_BindingMixin
+
+<pre><code>
+&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<pre><code>
+require([
+	"dojo/_base/declare",
+	"dijit/_WidgetBase",
+	"dijit/_TemplatedMixin",
+	"adjunct/widget/_BindingMixin"
+], function (declare, _WidgetBase, _TemplatedMixin, _BindingMixin) {
+	var Widget = declare([_WidgetBase, _TemplatedMixin, _BindingMixin], {
+		templateString: "<div id='container'><label data-bind='text: nameLabel'></label>: <input type='text' data-bind='value: name' /><div><span data-bind='text: name'></span><div><span>Unbound</span></div></div></div>",
+		nameLabel: "Enter your name",
+		name: "Matthew Maxwell"
+	});
+
+	window.widget = new Widget({}, "container");
+	widget.startup();
+
+	setTimeout(function () {
+		widget.set("name", "Changed name");
+	}, 3000);
 });
 </code></pre>
 

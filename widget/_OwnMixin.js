@@ -13,7 +13,7 @@ define([
 		own: function () {
 			// summary:
 			//		Creates a relationship where this object is the owner of provided items.
-			//		Items should have either destroyRecursive, destroy, or remove method.
+			//		Items should have either destroyRecursive, destroy, remove, or dispose method.
 			if (!this._owned) {
 				this._owned = [];
 			}

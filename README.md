@@ -5,7 +5,7 @@
 * dgrid
 * xstyle
 
-# Examples
+# Examples (More thorough documentation coming)
 
 ## adjunct/store/Monitorable
 

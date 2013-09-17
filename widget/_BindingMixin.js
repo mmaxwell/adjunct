@@ -53,13 +53,9 @@ define([
 				//		Binds node and all child nodes.
 				// node: Node
 				//		Root node.
-				var children = node.childNodes ? arrayUtil.create(node.childNodes) : null;
-
 				bind(node);
 
-				if (children) {
-					children.forEach(applyBindings);
-				}
+				arrayUtil.create(node.childNodes).forEach(applyBindings);
 			}
 
 			applyBindings(this.domNode);

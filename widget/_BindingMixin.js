@@ -1,9 +1,7 @@
-/*
-<div id="container">
-	<label data-bind="text: nameLabel" data-dojo-attach-point="nameLabelNode"></label>: <input type="text" data-dojo-attach-point="name" data-bind="value: name" />
-</div>
-*/
-
+// TODO: Observable array?
+// TODO: Binding on a widget
+// TODO: Binding on nested widgets
+// TODO: Binding on nested namespaces
 define([
 	"dojo/_base/declare",
 	"dojo/dom-attr",
@@ -19,13 +17,12 @@ define([
 
 			this.inherited(arguments);
 
-			function updateModel(property, oldValue, newValue) {
-				if (model[property]) {
-					model[property](newValue);
-				}
-			}
+			function bind(/*Node*/ node) {
+				// summary:
+				//		Binds a node to the model.
+				// node: Node
+				//		Node to bind.
 
-			function bind(node) {
 				var binding = domAttr.get(node, "data-bind"),
 					key;
 
@@ -34,27 +31,40 @@ define([
 
 					if (!model.hasOwnProperty(key)) {
 						model[key] = ko.observable(bindee.get(key));
+
+						// Two-way binding:
+						// When the model changes, the widget is updated.
+						// When the widget changes, the model is updated.
 						bindee.own(
 							model[key].subscribe(function (newValue) {
 								bindee._set(key, newValue);
 							}),
-							bindee.watch(key, updateModel)
+							bindee.watch(key, function (property, oldValue, newValue) {
+								if (model[property]) {
+									model[property](newValue);
+								}
+							})
 						);
 					}
 				}
 			}
 
-			function walkNode(node) {
+			function applyBindings(/*Node*/ node) {
+				// summary:
+				//		Binds node and all child nodes.
+				// node: Node
+				//		Root node.
+
 				var children = node.childNodes ? arrayUtil.create(node.childNodes) : null;
 
 				bind(node);
 
 				if (children) {
-					children.forEach(walkNode);
+					children.forEach(applyBindings);
 				}
 			}
 
-			walkNode(this.domNode);
+			applyBindings(this.domNode);
 			ko.applyBindings(model, this.domNode);
 		}
 	});

@@ -11,7 +11,7 @@ define([
 ], function (declare, domAttr, _OwnMixin, arrayUtil, ko) {
 	return declare(_OwnMixin, {
 		buildRendering: function () {
-			var binder = /(text|value|attr)\:\s/,
+			var binder = /(text|value|attr)\:\s*/,
 				model = {},
 				bindee = this;
 

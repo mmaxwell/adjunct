@@ -36,7 +36,7 @@ define([
 						// When the widget changes, the model is updated.
 						bindee.own(
 							model[key].subscribe(function (newValue) {
-								bindee._set(key, newValue);
+								bindee.set(key, newValue);
 							}),
 							bindee.watch(key, function (property, oldValue, newValue) {
 								if (model[property]) {

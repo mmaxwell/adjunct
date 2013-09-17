@@ -34,7 +34,6 @@ define([
 					peon.destroy();
 				} else if (peon.remove) {
 					peon.remove();
-
 				// knockoutjs
 				} else if (peon.dispose) {
 					peon.dispose();

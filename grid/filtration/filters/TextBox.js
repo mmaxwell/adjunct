@@ -13,7 +13,7 @@ define([
 		//		Value to match against.
 		// caseSensitive: Boolean
 		//		Whether the regular expression should be case sensitive or not.
-		return new RegExp(value, caseSensitive ? "" : "i")
+		return new RegExp(value, caseSensitive ? "" : "i");
 	}
 
 	return declare(_FilterMixin, {
